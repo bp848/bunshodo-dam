@@ -5,10 +5,14 @@ import { resolve } from 'path';
 dotenv.config({ path: resolve(process.cwd(), '.env') });
 
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
+import { sql } from 'drizzle-orm';
 import { db, pool } from './index';
 
 async function main() {
   console.log('🚀    MIGRATION STARTED\n');
+  // Set session timeout
+  await db.execute(sql`SET statement_timeout = 300000`);
+  await db.execute(sql`SET idle_in_transaction_session_timeout = 300000`);
   await migrate(db, { migrationsFolder: 'src/db/migrations' });
   console.log('✅    MIGRATION COMPLETED\n');
   console.log('🌱    Closing DB connection...\n');
