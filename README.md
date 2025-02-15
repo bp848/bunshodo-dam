@@ -24,7 +24,7 @@ FileKit is Ideal for solo entrepreneurs, creatives, and teams, FileKit ensures s
 # Requirements
 
 Before you begin, ensure that your computer has the following software installed.
-- `nodejs` (20.9.0 or later) https://nodejs.org/en (recommended)
+- `nodejs` (18.17.0 or later, < 19.0.0) https://nodejs.org/en (recommended)
 - `pnpm` Node package manager https://pnpm.io/ (recommended)
 - `Visual Studio Code`  https://code.visualstudio.com/ (recommended)
 - `Docker` https://www.docker.com/products/docker-desktop/
@@ -135,3 +135,103 @@ Run these following commands in the root directory of your project.
 
 
 ### For detail documentation, please go to https://filekit-doc.vercel.app/
+
+# Deployments
+
+## System Requirements for Deployment
+
+### Required System Libraries
+FileKit requires the following system libraries for PDF and image processing:
+- `libpixman-1-dev`
+- `libcairo2-dev`
+- `libpango1.0-dev`
+- `libjpeg-dev`
+- `libgif-dev`
+
+## Recommended Deployment Options
+
+### Option 1: Docker Deployment (Recommended)
+Docker deployment is the recommended approach as it ensures consistent system dependencies across environments:
+
+```bash
+# Build the image
+docker build -t filekit .
+
+# Run the container with environment variables
+docker run -p 3000:3000 \
+  --env-file .env \
+  -v $(pwd)/uploads:/app/uploads \
+  filekit
+```
+
+### Option 2: Cloud Platform Deployment
+FileKit can be deployed to cloud platforms that support system package installation:
+
+#### AWS Elastic Beanstalk
+- Use the provided `Dockerfile`
+- Configure environment variables in Elastic Beanstalk console
+- Enable VPC for database connectivity
+
+#### Google Cloud Run
+- Deploy using Cloud Run's container support
+- Set up Cloud SQL for database
+- Configure secrets in Cloud Run console
+
+#### DigitalOcean App Platform
+- Use container deployment
+- Configure App Platform resources
+- Set up managed database
+
+### Option 3: Alternative Implementation for Vercel
+For Vercel deployment, modify the application to use serverless-friendly alternatives:
+
+1. PDF Processing:
+   - Replace `pdfjs-dist` with client-side PDF.js viewer
+   - Use browser-based PDF rendering
+
+2. Image Processing:
+   - Replace `canvas` with `sharp` package
+   - Implement client-side image preview
+
+## Environment Configuration
+
+### Production Checklist
+- [ ] Configure database connection string
+- [ ] Set up Cloudflare R2 credentials
+- [ ] Configure SMTP settings
+- [ ] Set up Stripe keys
+- [ ] Enable reCAPTCHA
+- [ ] Configure authentication providers
+
+### Performance Optimization
+- Enable caching headers for static assets
+- Configure CDN for media delivery
+- Set up database connection pooling
+
+For detailed deployment instructions with Next.js, see: https://nextjs.org/docs/deployment
+
+# Frequently Asked Questions
+
+## ESLint invalid extension error
+ESLint: Invalid Options: - Unknown options: useEslintrc, extensions - 'extensions' has been removed.
+
+If you're encountering an issue caused by a configuration mismatch between ESLint version 9.0.0 and Next.js, it's likely due to compatibility issues. To resolve this, you need to downgrade the ESLint version to 8.57.0.
+
+```json
+{
+  "dependencies": {
+    "eslint": "8.57.0"
+  }
+}
+```
+
+## Vercel Deployment System Dependencies
+If you encounter build errors related to system libraries (`libpixman-1-dev`, `libcairo2-dev`, etc.) when deploying to Vercel, this is because some dependencies (like `canvas` and `pdfjs-dist`) require these system libraries.
+
+To resolve this, you have two options:
+
+1. Deploy to a platform that supports system package installation (AWS, GCP, Heroku, etc.)
+2. Use alternative packages that don't require system dependencies:
+   - Replace `pdfjs-dist` with client-side PDF rendering
+   - Use `sharp` for image processing instead of `canvas`
+

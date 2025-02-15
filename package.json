@@ -2,10 +2,13 @@
   "name": "filekit",
   "version": "1.0.1",
   "private": true,
+  "engines": {
+    "node": ">=18.17.0 <19.0.0"
+  },
   "scripts": {
     "dev": "pnpm db:seed && next dev",
     "dev:turbo": "pnpm db:seed && next dev --turbo",
-    "build": "pnpm db:push && pnpm db:seed && next build",
+    "build": "pnpm db:migrate && pnpm db:seed && next build",
     "build:check": "tsc --noEmit",
     "start": "next start",
     "lint": "next lint",
@@ -25,6 +28,7 @@
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook"
   },
   "dependencies": {
+    "@swc-node/register": "^1.8.0",
     "@aws-sdk/client-s3": "^3.670.0",
     "@aws-sdk/lib-storage": "^3.670.0",
     "@aws-sdk/s3-presigned-post": "^3.670.0",
@@ -92,7 +96,6 @@
     "next-usequerystate": "^1.20.0",
     "nodemailer": "^6.9.15",
     "oslo": "^1.2.1",
-    "pdfjs-dist": "^4.7.76",
     "pg": "^8.13.0",
     "postcss": "^8.4.47",
     "pretty-bytes": "^6.1.1",
