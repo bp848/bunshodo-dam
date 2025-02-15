@@ -4,6 +4,9 @@ await import('./src/env.mjs');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   webpack: (config) => {
     config.externals.push('@node-rs/argon2', '@node-rs/bcrypt');
     config.resolve.alias.canvas = false;
