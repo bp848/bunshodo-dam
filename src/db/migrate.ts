@@ -10,6 +10,11 @@ import { db, pool } from './index';
 
 async function main() {
   console.log('🚀    MIGRATION STARTED\n');
+  console.log('Environment:', {
+    NODE_ENV: process.env.NODE_ENV,
+    DATABASE_URL: process.env.DATABASE_URL?.replace(/:[^:@]+@/, ':***@')
+  });
+
   // Set session timeout
   await db.execute(sql`SET statement_timeout = 300000`);
   await db.execute(sql`SET idle_in_transaction_session_timeout = 300000`);
