@@ -1,7 +1,10 @@
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+import { resolve } from 'path';
+
+// Load environment variables from .env file
+dotenv.config({ path: resolve(process.cwd(), '.env') });
 
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-
 import { db, pool } from './index';
 
 async function main() {
