@@ -8,5 +8,8 @@
         "buildCommand": "bash ./vercel-build.sh"
       }
     }
-  ]
+  ],
+  "env": {
+    "DATABASE_URL": "postgresql://bp-dam:8K3tbi%7Dnj5TJlb@34.146.221.208:5432/filekit"
+  }
 }

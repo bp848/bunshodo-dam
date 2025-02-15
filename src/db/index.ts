@@ -2,6 +2,12 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema';
 
+console.log('Current working directory:', process.cwd());
+console.log('Environment variables:', {
+  NODE_ENV: process.env.NODE_ENV,
+  DATABASE_URL: process.env.DATABASE_URL?.replace(/:[^:@]+@/, ':***@')
+});
+
 if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL is not set');
 }
