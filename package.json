@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "pnpm db:seed && next dev",
     "dev:turbo": "pnpm db:seed && next dev --turbo",
-    "build": "pnpm db:migrate && pnpm db:seed && next build",
+    "build": "NODE_OPTIONS='--experimental-loader=@swc-node/register/esm' pnpm db:migrate && pnpm db:seed && next build",
     "build:check": "tsc --noEmit",
     "start": "next start",
     "lint": "next lint",
