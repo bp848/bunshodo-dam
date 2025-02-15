@@ -8,9 +8,7 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
   webpack: (config) => {
-    config.externals.push('@node-rs/argon2', '@node-rs/bcrypt');
-    config.resolve.alias.canvas = false;
-
+    config.externals.push('@node-rs/argon2', '@node-rs/bcrypt', 'canvas');
     return config;
   },
   images: {
