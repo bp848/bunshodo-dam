@@ -40,7 +40,6 @@
     "@hookform/resolvers": "^3.9.0",
     "@lucia-auth/adapter-drizzle": "^1.1.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "@napi-rs/canvas": "^0.1.67",
     "@nextui-org/pagination": "^2.0.36",
     "@nextui-org/system": "^2.2.6",
     "@nextui-org/theme": "^2.2.11",

@@ -56,9 +56,6 @@ importers:
       '@mailchimp/mailchimp_marketing':
         specifier: ^3.0.80
         version: 3.0.80
-      '@napi-rs/canvas':
-        specifier: ^0.1.67
-        version: 0.1.67
       '@nextui-org/pagination':
         specifier: ^2.0.36
         version: 2.2.8(@nextui-org/system@2.4.6(@nextui-org/theme@2.4.5(tailwindcss@3.4.17))(framer-motion@11.18.2(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.4.5(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -8575,6 +8572,7 @@ snapshots:
       '@napi-rs/canvas-linux-x64-gnu': 0.1.67
       '@napi-rs/canvas-linux-x64-musl': 0.1.67
       '@napi-rs/canvas-win32-x64-msvc': 0.1.67
+    optional: true
 
   '@napi-rs/wasm-runtime@0.2.6':
     dependencies:
